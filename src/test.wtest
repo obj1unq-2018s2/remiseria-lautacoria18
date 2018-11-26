@@ -1,0 +1,53 @@
+import Remis.*
+import Remiseria.*
+import Viajes.*
+describe "remiseria"{
+	
+		var chevy1= new ChevroletCorsa()
+	var chevy2= new ChevroletCorsa()
+	var auto1= new VehiculoDistinto()
+	var trafic1= new Standard()
+	
+	var remiseria1= new Remiseria(autosRegistrados= #{chevy1, auto1, trafic1})
+	
+	var viaje1 = new Viaje()
+	var viaje2 = new Viaje()
+	
+
+	
+	fixture {
+		
+		chevy1.color("gris")
+		
+		
+	}
+	
+	
+	
+	
+	
+	test "autoMasRapido"{
+		
+		assert.equals(chevy1, remiseria1.autoMasRapido())
+		
+	}
+	
+	test "color del mas rapido"{
+		
+		assert.equals("gris", remiseria1.colorDelMasRapido())
+	}
+	
+	test "registrar viaje" {
+		
+		remiseria1.registrarViaje(viaje1, chevy2)
+		assert.equals(#{viaje1}, remiseria1.viajesRegistrados())
+		assert.equals(chevy2, viaje1.autoQueLoHizo())
+		
+		
+	}
+	
+	
+	
+	
+	
+}
